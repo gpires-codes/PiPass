@@ -1,9 +1,19 @@
+import { UnlockLayout } from "../components/layouts/UnlockLayout";
+import { VaultLayout } from "../components/layouts/VaultLayout";
 import { UnlockPage } from "./unlock";
 import { VaultPage } from "./vault";
 
 export const routes = [
-  { path: "/", element: UnlockPage },
-  { path: "/vault", element: VaultPage },
-  // { path: "/add", element: AddPage },
-  // { path: "/settings", element: SettingsPage },
+  {
+    path: "/",
+    element: UnlockPage,
+    layout: UnlockLayout,
+  },
+  {
+    path: "/vault",
+    element: VaultPage,
+    layout: VaultLayout,
+  },
+  // { path: "/vault/add", element: AddPage, layout: VaultLayout },
+  // { path: "/settings", element: SettingsPage, layout: VaultLayout },
 ];

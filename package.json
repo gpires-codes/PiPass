@@ -8,11 +8,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "tauri": "tauri",
     "preview": "vite preview"
   },
   "dependencies": {
     "@fontsource-variable/oxanium": "^5.2.8",
     "@tailwindcss/vite": "^4.3.0",
+    "@tauri-apps/plugin-stronghold": "^2.3.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.17.0",
