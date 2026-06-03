@@ -12,6 +12,7 @@ export function UnlockLayout({ children }: UnlockLayoutProps) {
     const currentWindow = getCurrentWindow();
     currentWindow.setSize(new LogicalSize(500, 400));
     currentWindow.center();
+    currentWindow.setAlwaysOnTop(true);
   }, []);
 
   return (

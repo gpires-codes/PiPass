@@ -8,14 +8,31 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "../components/ui/input-group";
-import { EyeIcon, EyeOffIcon, LockIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon, LockKeyholeOpen } from "lucide-react";
+import { useVaultStore } from "@/stores/vaultStore";
+import { LockIcon } from "@/components/LockIcon";
 
 export function UnlockPage() {
+  const vaultStore = useVaultStore();
   const navigate = useNavigate();
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLocked, setIsLocked] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleUnlock = async () => {
-    navigate("/vault", { replace: true });
+    setIsLoading(true);
+    const isUnlocked = await vaultStore.unlock(password);
+    if (!isUnlocked) {
+      setIsLoading(false);
+      return;
+    }
+
+    if (isUnlocked) {
+      setIsLocked(false);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      navigate("/vault", { replace: true });
+    }
   };
 
   return (
@@ -28,8 +45,9 @@ export function UnlockPage() {
     >
       <FieldGroup>
         <div className="flex flex-col items-center gap-2 text-center">
-          <div className="flex size-8 items-center justify-center rounded-md">
-            <LockIcon className="size-6" />
+          <div className="flex items-center justify-center rounded-md">
+            {/* <LockIcon className="size-6" /> */}
+            <LockIcon isLocked={isLocked} />
           </div>
           <span className="sr-only">PiPass logo</span>
           <h1 className="text-xl font-bold">PiPass</h1>
@@ -40,7 +58,8 @@ export function UnlockPage() {
             <InputGroupInput
               id="inline-end-input"
               type={showPassword ? "text" : "password"}
-              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <InputGroupAddon align="inline-end">
               <Toggle
@@ -59,8 +78,9 @@ export function UnlockPage() {
             </InputGroupAddon>
           </InputGroup>
         </Field>
-        <Button type="submit" className="w-full">
-          Desbloquear
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          <LockKeyholeOpen />
+          {isLoading ? "Desbloqueando..." : "Desbloquear"}
         </Button>
       </FieldGroup>
     </form>
