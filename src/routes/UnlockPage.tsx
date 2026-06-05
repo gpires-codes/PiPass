@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { getCurrentWindow, LogicalSize } from "@tauri-apps/api/window";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useVaultStore } from "@/stores/vaultStore";
 import { LockIcon } from "@/components/LockIcon";
 import { Button } from "@/components/ui/button";
 import { Toggle } from "@/components/ui/toggle";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Spinner } from "@/components/ui/spinner";
 import {
   InputGroup,
   InputGroupAddon,
@@ -15,6 +17,7 @@ import { EyeIcon, EyeOffIcon, LockKeyholeOpen } from "lucide-react";
 
 export function UnlockPage() {
   const { unlock } = useVaultStore();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -57,11 +60,11 @@ export function UnlockPage() {
           <div className="flex items-center justify-center rounded-md">
             <LockIcon isLocked={isLocked} />
           </div>
-          <span className="sr-only">PiPass logo</span>
-          <h1 className="text-xl font-bold">PiPass</h1>
+          
+          <h1 className="text-xl font-bold">{t("unlock.title")}</h1>
         </div>
         <Field>
-          <FieldLabel htmlFor="inline-end-input">Senha</FieldLabel>
+          <FieldLabel htmlFor="inline-end-input">{t("unlock.password")}</FieldLabel>
           <InputGroup>
             <InputGroupInput
               id="inline-end-input"
@@ -88,7 +91,7 @@ export function UnlockPage() {
         </Field>
         <Button type="submit" className="w-full" disabled={isLoading}>
           <LockKeyholeOpen />
-          {isLoading ? "Desbloqueando..." : "Desbloquear"}
+          {isLoading ? <Spinner /> : t("unlock.submit")}
         </Button>
       </FieldGroup>
     </form>

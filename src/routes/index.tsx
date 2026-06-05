@@ -44,25 +44,25 @@ export interface Route {
 
 export const navSettings: NavGroup[] = [
   {
-    items: [{ title: "Geral", icon: Settings, url: "/settings/general" }],
+    items: [{ title: "settings.general", icon: Settings, url: "/settings/general" }],
   },
   {
-    title: "Experiência",
+    title: "settings.experience",
     items: [
-      { title: "Aparência", icon: Palette, url: "/settings/appearance" },
+      { title: "settings.appearance", icon: Palette, url: "/settings/appearance" },
       {
-        title: "Atalhos do teclado",
+        title: "settings.keyboard-shortcuts",
         icon: Keyboard,
         url: "/settings/keyboard-shortcuts",
       },
-      { title: "Idioma", icon: Languages, url: "/settings/language" },
+      { title: "settings.language", icon: Languages, url: "/settings/language" },
     ],
   },
   {
-    title: "Segurança",
+    title: "settings.security",
     items: [
       {
-        title: "Bloqueio e Cofre",
+        title: "settings.lock-and-vault",
         icon: ShieldAlert,
         url: "/settings/lock-and-vault",
       },

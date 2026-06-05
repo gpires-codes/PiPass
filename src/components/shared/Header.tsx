@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { getPathLeaf } from "@/lib/navigation";
@@ -23,6 +24,7 @@ export function Header({
   ...props
 }: HeaderProps) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { pathname } = useLocation();
   const currentPage = getPathLeaf(pathname);
 
@@ -56,8 +58,7 @@ export function Header({
             >
               <BreadcrumbItem>
                 <BreadcrumbPage className="h-4">
-                  {currentPage.toUpperCase().at(0) +
-                    currentPage.replaceAll("-", " ").slice(1)}
+                  {t(`settings.${currentPage}`)}
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </motion.div>
@@ -70,7 +71,6 @@ export function Header({
           size="icon"
           onClick={() => navigate("/vault", { replace: true })}
         >
-          <span className="sr-only">Back</span>
           <X />
         </Button>
       </div>

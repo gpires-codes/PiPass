@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { navSettings } from "@/routes";
 import { getPathLeaf } from "@/lib/navigation";
 import { SearchForm } from "@/components/SearchForm";
@@ -17,6 +18,7 @@ import {
 
 export function SettingsSideBar({ ...props }: ComponentProps<typeof Sidebar>) {
   const location = useLocation();
+  const { t } = useTranslation();
 
   function isActiveRoute(url: string): boolean {
     const pathStart = getPathLeaf(url);
@@ -34,7 +36,7 @@ export function SettingsSideBar({ ...props }: ComponentProps<typeof Sidebar>) {
         {navSettings.map((group, groupIdx) => (
           <SidebarGroup key={group.title || groupIdx}>
             {group.title && (
-              <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
+              <SidebarGroupLabel>{t(group.title)}</SidebarGroupLabel>
             )}
             <SidebarGroupContent>
               <SidebarMenu>
@@ -52,7 +54,7 @@ export function SettingsSideBar({ ...props }: ComponentProps<typeof Sidebar>) {
                           className="flex flex-row items-center gap-0"
                         >
                           {IconComponent && <IconComponent />}
-                          {item.title}
+                          {t(item.title)}
                         </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>

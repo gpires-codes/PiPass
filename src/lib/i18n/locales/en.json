@@ -1,0 +1,25 @@
+{
+  "common": {
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "search": "Search"
+  },
+  "unlock": {
+    "title": "PiPass",
+    "password": "Master password",
+    "submit": "Unlock",
+    "error": "Wrong password"
+  },
+  "settings": {
+    "title": "Settings",
+    "general": "General",
+    "experience": "Experience",
+    "appearance": "Appearance",
+    "theme": "Theme",
+    "keyboard-shortcuts": "Keyboard shortcuts",
+    "language": "Language",
+    "security": "Security",
+    "lock-and-vault": "Lock & Vault"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "common": {
+    "back": "Voltar",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "search": "Buscar"
+  },
+  "unlock": {
+    "title": "PiPass",
+    "password": "Senha mestra",
+    "submit": "Desbloquear",
+    "error": "Senha incorreta"
+  },
+  "settings": {
+    "title": "Configurações",
+    "general": "Geral",
+    "experience": "Experiência",
+    "appearance": "Aparência",
+    "theme": "Tema",
+    "keyboard-shortcuts": "Atalhos do teclado",
+    "language": "Idioma",
+    "security": "Segurança",
+    "lock-and-vault": "Bloqueio e Cofre"
+  }
+}
