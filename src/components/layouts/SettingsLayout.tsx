@@ -16,10 +16,10 @@ export function SettingsLayout({ children }: SettingsLayoutProps) {
       <SidebarProvider className="pt-6">
         <SettingsSideBar className="pt-6" variant="inset" />
         <SidebarInset>
-          <Header />
+          <Header className="mb-16" />
           <ScrollArea>
             <motion.div
-              className="flex flex-col h-full justify-end items-center"
+              className="mx-32"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}

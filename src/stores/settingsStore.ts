@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import i18n from "@/lib/i18n";
 import { getSettings, saveSettings, type Settings } from "@/lib/settings";
 
 interface SettingsState {
@@ -16,6 +17,9 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   },
 
   update: async (updates) => {
+    if (updates.language) {
+      await i18n.changeLanguage(updates.language);
+    }
     await saveSettings(updates);
     set((state) => ({
       settings: state.settings ? { ...state.settings, ...updates } : null,

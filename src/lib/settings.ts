@@ -1,4 +1,5 @@
 import { Store } from "@tauri-apps/plugin-store";
+import type { LanguageCode } from "@/lib/i18n/languages";
 
 let _store: Store | null = null;
 
@@ -13,14 +14,14 @@ export interface Settings {
   theme: "dark" | "light" | "system";
   lockOnMinimize: boolean;
   autoLockMinutes: number;
-  language: "pt" | "en";
+  language: LanguageCode;
 }
 
 const defaults: Settings = {
   theme: "dark",
   lockOnMinimize: true,
   autoLockMinutes: 5,
-  language: "pt",
+  language: "en",
 };
 
 export async function getSettings(): Promise<Settings> {

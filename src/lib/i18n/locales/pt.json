@@ -21,5 +21,14 @@
     "language": "Idioma",
     "security": "Segurança",
     "lock-and-vault": "Bloqueio e Cofre"
+  },
+  "language-page": {
+    "select-language": "Selecione o idioma",
+    "select-language-description": "Escolha o idioma que você quer usar no PiPass.",
+    "current-language": "Idioma atual",
+    "languages": {
+      "portuguese": "Português, Brasil",
+      "english": "Inglês"
+    }
   }
 }
