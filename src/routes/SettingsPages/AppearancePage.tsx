@@ -36,7 +36,7 @@ export function AppearancePage() {
             <SelectGroup>
               {themes.map((theme) => {
                 return (
-                  <SelectItem value={theme.code}>
+                  <SelectItem key={theme.code} value={theme.code}>
                     {t(theme.label)}
                   </SelectItem>
                 );

@@ -35,7 +35,7 @@ export function LanguagePage() {
           <SelectContent>
             <SelectGroup>
               {languages.map((l) => {
-                return <SelectItem value={l.code}>{t(l.label)}</SelectItem>;
+                return <SelectItem key={l.code} value={l.code}>{t(l.label)}</SelectItem>;
               })}
             </SelectGroup>
           </SelectContent>

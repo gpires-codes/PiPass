@@ -38,5 +38,19 @@
     "dark": "Escuro",
     "light": "Claro",
     "system": "Sistema"
+  },
+  "lock-and-vault-page": {
+    "select-auto-lock-time": {
+      "label": "Tempo de bloqueio automático",
+      "description": "Escolha quanto tempo de inatividade deve passar até o cofre trancar.",
+      "times": {
+        "1-minute": "1 minuto",
+        "5-minutes": "5 minutos",
+        "10-minutes": "10 minutos",
+        "30-minutes": "30 minutos",
+        "1-hour": "1 hora",
+        "never": "Nunca"
+      }
+    }
   }
 }

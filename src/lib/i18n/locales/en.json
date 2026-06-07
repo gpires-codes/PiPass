@@ -38,5 +38,19 @@
     "dark": "Dark",
     "light": "Light",
     "system": "System"
+  },
+  "lock-and-vault-page": {
+    "select-auto-lock-time": {
+      "label": "Auto-lock timeout",
+      "description": "Set the duration of inactivity before the vault locks.",
+      "times": {
+        "1-minute": "1 minute",
+        "5-minutes": "5 minutes",
+        "10-minutes": "10 minutes",
+        "30-minutes": "30 minutes",
+        "1-hour": "1 hour",
+        "never": "Never"
+      }
+    }
   }
 }

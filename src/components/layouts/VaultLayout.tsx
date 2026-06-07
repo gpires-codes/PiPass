@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { BaseLayout } from "./BaseLayout";
 import { Button } from "@/components/ui/button";
-import { Power, Settings } from "lucide-react";
+import { Lock, Settings } from "lucide-react";
 import { useVaultStore } from "@/stores/vaultStore";
 
 interface VaultLayoutProps {
@@ -24,9 +24,10 @@ export function VaultLayout({ children }: VaultLayoutProps) {
       <Button
         className="fixed top-10 right-4"
         variant={"secondary"}
+        size="icon"
         onClick={handleExit}
       >
-        <Power />
+        <Lock />
       </Button>
       <motion.div
         className="w-full max-w-sm"

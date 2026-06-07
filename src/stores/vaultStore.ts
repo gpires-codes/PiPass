@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { useSettingsStore } from "@/stores/settingsStore";
 import {
   loadVault,
   saveCredential,
@@ -36,6 +37,46 @@ interface VaultState {
   setSearch: (query: string) => void;
 }
 
+let _lockTimer: ReturnType<typeof setTimeout> | null = null;
+let _timerStartCount = 0;
+
+function clearLockTimer() {
+  if (_lockTimer) {
+    clearTimeout(_lockTimer);
+    _lockTimer = null;
+  }
+}
+
+export function startLockTimer(lockFn: () => void) {
+  clearLockTimer();
+
+  const { settings } = useSettingsStore.getState();
+  const minutes = settings?.autoLockMinutes;
+
+  if (minutes === undefined || minutes === 0) {
+    return;
+  }
+
+  const delayMs = minutes * 60 * 1000;
+  _timerStartCount++;
+
+  _lockTimer = setTimeout(() => {
+    try {
+      lockFn();
+    } catch (err) {
+      console.error("❌ Erro ao bloquear vault:", err);
+    }
+  }, delayMs);
+}
+
+// Export para permitir debug
+export function getLockTimerInfo() {
+  return {
+    isActive: _lockTimer !== null,
+    startCount: _timerStartCount,
+  };
+}
+
 export const useVaultStore = create<VaultState>((set, get) => ({
   isUnlocked: false,
   credentials: [],
@@ -46,13 +87,22 @@ export const useVaultStore = create<VaultState>((set, get) => ({
       await loadVault(password);
       set({ isUnlocked: true });
       await get().loadCredentials();
+
+      // Inicia o timer de auto-lock com a função lock do store
+      const lockFn = () => {
+        get().lock();
+      };
+      startLockTimer(lockFn);
       return true;
     } catch {
       return false;
     }
   },
 
-  lock: () => set({ isUnlocked: false, credentials: [] }),
+  lock: () => {
+    clearLockTimer();
+    set({ isUnlocked: false, credentials: [] });
+  },
 
   loadCredentials: async () => {
     const raw = await getCredential("index");
