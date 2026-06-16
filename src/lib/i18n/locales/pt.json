@@ -18,7 +18,33 @@
   },
   "add-password-page": {
     "title": "Adicionar senha",
-    "description": "Crie uma nova senha para armazenar com segurança."
+    "description": "Crie uma nova senha para armazenar com segurança.",
+    "add": "Adicionar",
+    "name-field": {
+      "title": "Nome",
+      "description": "Ex: GitHub, Google, Spotify..."
+    },
+    "identifier-field": {
+      "title": "Identificador",
+      "description": "E-mail, usuário, telefone ou qualquer dado usado para login"
+    },
+    "password-field": {
+      "title": "Senha",
+      "description": ""
+    },
+    "target-field": {
+      "target-title": "Onde usar",
+      "target-type-title": "Tipo",
+      "url-description": "Domínio do site onde a senha é usada. Ex: github.com",
+      "path-description": "Caminho do executável no seu computador",
+      "other-description": "Um nome para identificar onde essa senha é usada",
+      "none-selected": "Nenhum",
+      "targets": {
+        "web": "Site",
+        "app": "Aplicativo",
+        "other": "Outro"
+      }
+    }
   },
   "settings": {
     "title": "Configurações",

@@ -10,7 +10,7 @@ type CredentialTarget =
 export interface Credential {
   id: string;
   name: string;
-  identifier: string; // email, username, phone, document, api key, etc.
+  identifier: string; // email, username, phone, document, api key
   target: CredentialTarget;
   createdAt: number;
   updatedAt: number;

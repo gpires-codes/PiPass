@@ -17,8 +17,34 @@
     "create": "Add Password"
   },
   "add-password-page": {
-    "title": "Add Password",
-    "description": "Create a new password to store securely."
+    "title": "Add password",
+    "description": "Create a new password to store securely.",
+    "add": "Add",
+    "name-field": {
+      "title": "Name",
+      "description": "e.g. GitHub, Google, Spotify..."
+    },
+    "identifier-field": {
+      "title": "Identifier",
+      "description": "Email, username, phone or any data used to log in"
+    },
+    "password-field": {
+      "title": "Password",
+      "description": ""
+    },
+    "target-field": {
+      "target-title": "Where to use",
+      "target-type-title": "Type",
+      "url-description": "Domain of the website where the password is used. e.g. github.com",
+      "path-description": "Path to the executable on your computer",
+      "other-description": "A name to identify where this password is used",
+      "none-selected": "None",
+      "targets": {
+        "web": "Website",
+        "app": "Application",
+        "other": "Other"
+      }
+    }
   },
   "settings": {
     "title": "Settings",
