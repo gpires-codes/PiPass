@@ -86,6 +86,14 @@
         "1-hour": "1 hour",
         "never": "Never"
       }
+    },
+    "select-lock-on-minimize": {
+      "label": "Lock on minimize",
+      "description": "Choose whether the vault should be locked when minimizing the window.",
+      "options": {
+        "true": "Yes",
+        "false": "No"
+      }
     }
   }
 }

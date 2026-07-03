@@ -86,6 +86,14 @@
         "1-hour": "1 hora",
         "never": "Nunca"
       }
+    },
+    "select-lock-on-minimize": {
+      "label": "Bloquear ao minimizar",
+      "description": "Escolha se o cofre deve ser bloqueado ao minimizar a janela.",
+      "options": {
+        "true": "Sim",
+        "false": "Não"
+      }
     }
   }
 }

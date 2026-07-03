@@ -17,21 +17,51 @@ function AnimatedRoutes() {
   const location = useLocation();
   const isUnlocked = useVaultStore((state) => state.isUnlocked);
 
+  // Lock if the app is minimized and the setting is enabled
+  useEffect(() => {
+    let unlisten: (() => void) | undefined;
+
+    const setup = async () => {
+      const win = await WebviewWindow.getByLabel("main");
+      if (!win) return;
+
+      unlisten = await win.onFocusChanged(async ({ payload: focused }) => {
+        if (focused) return;
+
+        const visible = await win.isVisible();
+        if (visible) return;
+
+        const settings = useSettingsStore.getState().settings;
+        if (settings?.lockOnMinimize) {
+          await useVaultStore.getState().lock();
+          const auth = await WebviewWindow.getByLabel("auth");
+          await auth?.minimize();
+        }
+      });
+    };
+
+    setup();
+    return () => unlisten?.();
+  }, []);
+
   // When lock, hide the main and show the auth
   useEffect(() => {
     if (!isUnlocked) {
       const run = async () => {
         await getCurrentWebviewWindow().close();
-        const auth = await WebviewWindow.getByLabel("auth");
-        await auth?.show();
-        await auth?.center();
-        await auth?.setFocus();
+        const settings = await useSettingsStore.getState().load();
+        if (!settings?.lockOnMinimize) {
+          const auth = await WebviewWindow.getByLabel("auth");
+          await auth?.show();
+          await auth?.center();
+          await auth?.setFocus();
+        }
       };
       run();
     }
   }, [isUnlocked]);
 
-  // Activity tracker pra auto-lock
+  // Activity tracker for auto-lock
   useEffect(() => {
     if (!isUnlocked) return;
 

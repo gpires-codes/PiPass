@@ -24,3 +24,15 @@ export const autoLockOptions = [
   { code: "0", label: "lock-and-vault-page.select-auto-lock-time.times.never" },
 ] as const;
 
+export type LockOnMinimize = (typeof lockOnMinimizeOptions)[number]["code"];
+
+export const lockOnMinimizeOptions = [
+  {
+    code: "true",
+    label: "lock-and-vault-page.select-lock-on-minimize.options.true",
+  },
+  {
+    code: "false",
+    label: "lock-and-vault-page.select-lock-on-minimize.options.false",
+  }
+] as const;
