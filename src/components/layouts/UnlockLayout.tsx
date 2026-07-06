@@ -4,11 +4,12 @@ import { BaseLayout } from "./BaseLayout";
 
 interface UnlockLayoutProps {
   children: ReactNode;
+  titleBar?: boolean;
 }
 
-export function UnlockLayout({ children }: UnlockLayoutProps) {
+export function UnlockLayout({ children, titleBar = true }: UnlockLayoutProps) {
   return (
-    <BaseLayout className="flex flex-1 items-center justify-center">
+    <BaseLayout className="flex flex-1 items-center justify-center" titleBar={titleBar}>
       <motion.div
         className="w-full max-w-sm"
         initial={{ opacity: 0, y: 10 }}

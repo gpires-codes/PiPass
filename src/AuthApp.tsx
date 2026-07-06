@@ -109,7 +109,7 @@ export function AuthApp() {
   };
 
   return (
-    <UnlockLayout>
+    <UnlockLayout titleBar={false}>
       <div className="flex items-center justify-center h-screen w-full">
         <form
           className="w-full max-w-sm px-6"
@@ -150,21 +150,19 @@ export function AuthApp() {
               </InputGroup>
             </Field>
             <div className="flex gap-2">
-              {mode === "confirm" && (
-                <Button
-                  type="button"
-                  variant="secondary"
-                  className="flex-1"
-                  onClick={async () => {
-                    setPassword("");
-                    await invoke("cancel_confirmation");
-                    await getCurrentWebviewWindow().close();
-                    setMode("unlock");
-                  }}
-                >
-                  <span>{t("common.cancel")}</span>
-                </Button>
-              )}
+              <Button
+                type="button"
+                variant="secondary"
+                className="flex-1"
+                onClick={async () => {
+                  setPassword("");
+                  await invoke("cancel_confirmation");
+                  await getCurrentWebviewWindow().close();
+                  setMode("unlock");
+                }}
+              >
+                <span>{t("common.cancel")}</span>
+              </Button>
               <Button type="submit" className="flex-1" disabled={isLoading}>
                 <LockKeyholeOpen />
                 {isLoading ? <Spinner /> : <span>{t("unlock.submit")}</span>}
