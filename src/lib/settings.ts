@@ -1,5 +1,7 @@
 import { Store } from "@tauri-apps/plugin-store";
 import type { LanguageCode } from "@/lib/i18n/languages";
+import { defaultShortcuts, registerShortcut, unregisterShortcut, type Shortcut } from "@/lib/keyboardShortcuts";
+import { useSettingsStore } from "@/stores/settingsStore";
 
 let _store: Store | null = null;
 
@@ -15,6 +17,7 @@ export interface Settings {
   lockOnMinimize: boolean;
   autoLockMinutes: number;
   language: LanguageCode;
+  keyboardShortcuts: Shortcut[];
 }
 
 const defaults: Settings = {
@@ -22,6 +25,7 @@ const defaults: Settings = {
   lockOnMinimize: true,
   autoLockMinutes: 5,
   language: "en",
+  keyboardShortcuts: defaultShortcuts,
 };
 
 export async function getSettings(): Promise<Settings> {
@@ -35,4 +39,18 @@ export async function saveSettings(settings: Partial<Settings>) {
   const current = await getSettings();
   await store.set("settings", { ...current, ...settings });
   await store.save();
+}
+
+export async function updateShortcut(shortcut: Shortcut, newKey: string) {
+  await unregisterShortcut(shortcut.currentShortcut);
+
+  const updated = { ...shortcut, currentShortcut: newKey };
+  await registerShortcut(updated);
+
+  const current = await getSettings();
+  const shortcuts = current.keyboardShortcuts.map(s =>
+    s.id === shortcut.id ? updated : s
+  );
+
+  await useSettingsStore.getState().update({ keyboardShortcuts: shortcuts });
 }

@@ -95,5 +95,25 @@
         "false": "No"
       }
     }
+  },
+  "keyboard-shortcuts-page": {
+    "title": "Keyboard Shortcuts",
+    "description": "Manage your keyboard shortcuts.",
+    "global-separator-title": "Global",
+    "local-separator-title": "Local",
+    "shortcuts": {
+      "open-vault": {
+        "title": "Open Vault",
+        "description": "Open vault"
+      },
+      "lock-vault": {
+        "title": "Lock Vault",
+        "description": "Lock vault"
+      },
+      "open-password-menu": {
+        "title": "Open Password Menu",
+        "description": "Open password menu"
+      }
+    }
   }
 }

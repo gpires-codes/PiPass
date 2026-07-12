@@ -95,5 +95,25 @@
         "false": "Não"
       }
     }
+  },
+  "keyboard-shortcuts-page": {
+    "title": "Atalhos de Teclado",
+    "description": "Gerencie seus atalhos de teclado.",
+    "global-separator-title": "Global",
+    "local-separator-title": "Local",
+    "shortcuts": {
+      "open-vault": {
+        "title": "Abrir Cofre",
+        "description": "Abrir cofre"
+      },
+      "lock-vault": {
+        "title": "Bloquear Cofre",
+        "description": "Bloquear cofre"
+      },
+      "open-password-menu": {
+        "title": "Abrir Menu de Senhas",
+        "description": "Abrir menu de senhas"
+      }
+    }
   }
 }

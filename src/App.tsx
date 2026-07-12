@@ -7,15 +7,22 @@ import {
 } from "@tauri-apps/api/webviewWindow";
 import { listen } from "@tauri-apps/api/event";
 import { useSettingsStore } from "@/stores/settingsStore";
+import { useLocalShortcuts } from "@/hooks/use-local-shortcuts";
 import { startLockTimer, useVaultStore } from "@/stores/vaultStore";
 import { loadVault } from "@/lib/stronghold";
 import { applyTheme } from "@/lib/theme";
 import i18n from "@/lib/i18n";
+import {
+  defaultShortcuts,
+  registerAllShortcuts,
+} from "@/lib/keyboardShortcuts";
 import { routes } from "@/routes";
 
 function AnimatedRoutes() {
   const location = useLocation();
   const isUnlocked = useVaultStore((state) => state.isUnlocked);
+  const { settings } = useSettingsStore();
+  useLocalShortcuts(settings?.keyboardShortcuts ?? [], isUnlocked);
 
   // Lock if the app is minimized and the setting is enabled
   useEffect(() => {
@@ -114,10 +121,12 @@ function App() {
     let unlisten: (() => void) | undefined;
 
     const init = async () => {
-      await useVaultStore.getState().syncUnlock();
       const settings = await useSettingsStore.getState().load();
       if (settings?.language) i18n.changeLanguage(settings.language);
       if (settings?.theme) applyTheme(settings.theme);
+
+      const shortcuts = settings?.keyboardShortcuts ?? defaultShortcuts;
+      await registerAllShortcuts(shortcuts);
 
       unlisten = await listen<string>("vault-unlocked", async (event) => {
         await loadVault(event.payload);
